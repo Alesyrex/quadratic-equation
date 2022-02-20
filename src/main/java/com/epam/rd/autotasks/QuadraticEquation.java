@@ -19,14 +19,13 @@ public class QuadraticEquation {
         double discriminant = pow(b,DEGREE) - MULTIPLIEROFD * a * c;
         if (discriminant < 0) {
             System.out.println("no roots");
-        } else if (discriminant == 0) {
-            double x = -(b / (MULTIPLIEROFX * a));
-            System.out.println(x);
-        } else {
+        } else if (discriminant > 0) {
             double x1 = ((-b) - sqrt(discriminant)) / (MULTIPLIEROFX * a);
             double x2 = ((-b) + sqrt(discriminant)) / (MULTIPLIEROFX * a);
             System.out.println(x1 + " " + x2);
+        } else {
+            double x = -(b / (MULTIPLIEROFX * a));
+            System.out.println(x);
         }
     }
-
 }
