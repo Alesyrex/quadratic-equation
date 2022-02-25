@@ -15,6 +15,7 @@ public class QuadraticEquation {
     private double x1;
     private double x2;
     private boolean noRoots;
+    private boolean oneRoot;
 
     public void setA(double inA) {
         a = inA;
@@ -32,8 +33,11 @@ public class QuadraticEquation {
     public double getX2() {
         return x2;
     }
-    public boolean getNoRoots() {
+    public boolean isNoRoots() {
         return noRoots;
+    }
+    public boolean isOneRoot() {
+        return oneRoot;
     }
 
     private double discriminant () {
@@ -47,6 +51,7 @@ public class QuadraticEquation {
             x1 = ((-b) - sqrt(discriminant())) / (MULTIPLIER_OF_X * a);
             x2 = ((-b) + sqrt(discriminant())) / (MULTIPLIER_OF_X * a);
         } else {
+            oneRoot = true;
             x1 = -(b / (MULTIPLIER_OF_X * a));
             x2 = -(b / (MULTIPLIER_OF_X * a));
         }

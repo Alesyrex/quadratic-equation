@@ -2,15 +2,15 @@ package com.epam.rd.autotasks;
 
 import java.util.Scanner;
 
-public class InOutData {
+public final class InOutData {
     private static final String NO_ROOT = "no roots";
     private InOutData() {
     }
 
     public static void printRoot (QuadraticEquation equation) {
-        if (equation.getNoRoots()) {
+        if (equation.isNoRoots()) {
             System.out.println(NO_ROOT);
-        } else if (equation.getX1() == equation.getX2()) {
+        } else if (equation.isOneRoot()) {
             System.out.println(equation.getX1());
         } else {
             System.out.println(equation.getX1() + " " + equation.getX2());
