@@ -1,7 +1,6 @@
 package com.epam.rd.autotasks;
 
-
-public class InOutData {
+public class OutData {
     private static final String NO_ROOT = "no roots";
     private static final double EPSILON = 1E-16;
 

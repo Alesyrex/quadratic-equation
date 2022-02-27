@@ -1,7 +1,6 @@
 package com.epam.rd.autotasks;
 
 import java.util.Scanner;
-
 import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
 
@@ -50,15 +49,17 @@ public class QuadraticEquation {
         double a;
         double b;
         double c;
+
         try (Scanner scanner = new Scanner(System.in)) {
             a = scanner.nextDouble();
             b = scanner.nextDouble();
             c = scanner.nextDouble();
         }
-        InOutData out = new InOutData();
 
         QuadraticEquation equation = new QuadraticEquation(a, b, c);
         equation.calculationRoots();
-        out.printRoots(equation);
+
+        OutData console = new OutData();
+        console.printRoots(equation);
     }
 }
