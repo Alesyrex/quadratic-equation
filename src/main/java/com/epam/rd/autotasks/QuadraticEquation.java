@@ -1,5 +1,7 @@
 package com.epam.rd.autotasks;
 
+import java.util.Scanner;
+
 import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
 
@@ -7,23 +9,17 @@ public class QuadraticEquation {
 
     private static final double DEGREE = 2;
     private static final double MULTIPLIER_OF_D = 4;
-    private static final double MULTIPLIER_OF_X = 2;
+    private static final double MULTIPLIER_OF_DENOMINATOR = 2;
 
-    private double a;
-    private double b;
-    private double c;
+    private final double a;
+    private final double b;
+    private final double c;
     private double x1;
     private double x2;
-    private boolean noRoots;
-    private boolean oneRoot;
 
-    public void setA(double inA) {
+    public QuadraticEquation(double inA, double inB, double inC) {
         a = inA;
-    }
-    public void setB(double inB) {
         b = inB;
-    }
-    public void setC(double inC) {
         c = inC;
     }
 
@@ -33,35 +29,36 @@ public class QuadraticEquation {
     public double getX2() {
         return x2;
     }
-    public boolean isNoRoots() {
-        return noRoots;
-    }
-    public boolean isOneRoot() {
-        return oneRoot;
-    }
 
-    private double discriminant () {
+    public double calculationDiscriminant() {
         return pow(b, DEGREE) - MULTIPLIER_OF_D * a * c;
     }
 
-    public void rootCalculation () {
-        if (discriminant() < 0) {
-            noRoots = true;
-        } else if (discriminant() > 0) {
-            x1 = ((-b) - sqrt(discriminant())) / (MULTIPLIER_OF_X * a);
-            x2 = ((-b) + sqrt(discriminant())) / (MULTIPLIER_OF_X * a);
+    public void calculationRoots() {
+        double denominator = MULTIPLIER_OF_DENOMINATOR * a;
+
+        if (calculationDiscriminant() > 0) {
+            x1 = ((-b) - sqrt(calculationDiscriminant())) / denominator;
+            x2 = ((-b) + sqrt(calculationDiscriminant())) / denominator;
         } else {
-            oneRoot = true;
-            x1 = -(b / (MULTIPLIER_OF_X * a));
-            x2 = -(b / (MULTIPLIER_OF_X * a));
+            x1 = -(b / denominator);
+            x2 = x1;
         }
     }
 
     public static void main(String[] args) {
+        double a;
+        double b;
+        double c;
+        try (Scanner scanner = new Scanner(System.in)) {
+            a = scanner.nextDouble();
+            b = scanner.nextDouble();
+            c = scanner.nextDouble();
+        }
+        InOutData out = new InOutData();
 
-        QuadraticEquation equation = new QuadraticEquation();
-        InOutData.inputData(equation);
-        equation.rootCalculation();
-        InOutData.printRoot(equation);
+        QuadraticEquation equation = new QuadraticEquation(a, b, c);
+        equation.calculationRoots();
+        out.printRoots(equation);
     }
 }

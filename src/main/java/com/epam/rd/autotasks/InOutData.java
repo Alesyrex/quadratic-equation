@@ -1,33 +1,17 @@
 package com.epam.rd.autotasks;
 
-import java.util.Scanner;
 
-public final class InOutData {
+public class InOutData {
     private static final String NO_ROOT = "no roots";
-    private InOutData() {
-    }
+    private static final double EPSILON = 1E-16;
 
-    public static void printRoot (QuadraticEquation equation) {
-        if (equation.isNoRoots()) {
+    public void printRoots (QuadraticEquation equation) {
+        if (equation.calculationDiscriminant() < 0) {
             System.out.println(NO_ROOT);
-        } else if (equation.isOneRoot()) {
+        } else if (Math.abs(equation.getX1() - equation.getX2()) <= EPSILON) {
             System.out.println(equation.getX1());
         } else {
             System.out.println(equation.getX1() + " " + equation.getX2());
         }
-    }
-
-    public static void inputData (QuadraticEquation equation) {
-        double a;
-        double b;
-        double c;
-        try (Scanner scanner = new Scanner(System.in)) {
-            a = scanner.nextDouble();
-            b = scanner.nextDouble();
-            c = scanner.nextDouble();
-        }
-        equation.setA(a);
-        equation.setB(b);
-        equation.setC(c);
     }
 }
